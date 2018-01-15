@@ -22,9 +22,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                Intent listPageIntent = new Intent(this, ListActivity.class);
-                startActivity(listPageIntent);
+                goToListPage();
             }
         });
+    }
+
+
+    public void goToListPage()
+    {
+        Intent listPageIntent = new Intent(this, ListActivity.class);
+        startActivity(listPageIntent);
     }
 }
