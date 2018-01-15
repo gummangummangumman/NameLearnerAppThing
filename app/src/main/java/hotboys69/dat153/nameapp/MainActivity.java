@@ -25,6 +25,24 @@ public class MainActivity extends AppCompatActivity {
                 goToListPage();
             }
         });
+
+        Button button2 = findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                goToGalleryPage();
+            }
+        });
+
+        Button learnButton = findViewById(R.id.button3);
+        learnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                goToLearningPage();
+            }
+        });
     }
 
 
@@ -32,5 +50,17 @@ public class MainActivity extends AppCompatActivity {
     {
         Intent listPageIntent = new Intent(this, ListActivity.class);
         startActivity(listPageIntent);
+    }
+
+    public void goToGalleryPage()
+    {
+        Intent galleryPageIntent = new Intent(this, GalleryActivity.class);
+        startActivity(galleryPageIntent);
+    }
+
+    public void goToLearningPage()
+    {
+        Intent learningPageIntent = new Intent(this, LearningActivity.class);
+        startActivity(learningPageIntent);
     }
 }
