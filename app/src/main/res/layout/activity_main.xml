@@ -6,13 +6,32 @@
     android:layout_height="match_parent"
     tools:context="hotboys69.dat153.nameapp.MainActivity">
 
-    <TextView
+    <Button
+        android:id="@+id/button3"
         android:layout_width="wrap_content"
-        android:layout_height="14dp"
-        android:text="LOL"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        android:width="200dp"
+        android:text="@string/button3text"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="291dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="200dp"
+        android:text="@string/button2text"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="193dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:width="200dp"
+        android:text="@string/button1text"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="95dp" />
 
 </android.support.constraint.ConstraintLayout>
