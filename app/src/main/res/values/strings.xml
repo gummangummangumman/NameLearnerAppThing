@@ -3,4 +3,11 @@
     <string name="button1text">List names</string>
     <string name="button2text">Picture gallery</string>
     <string name="button3text">Learning mode</string>
+
+    <string-array name="names">
+        <item>Emil</item>
+        <item>Jonas</item>
+        <item>Trygve</item>
+        <item>Lol</item>
+    </string-array>
 </resources>

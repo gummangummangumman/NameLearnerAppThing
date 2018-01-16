@@ -17,13 +17,12 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        strings = getResources().getStringArray(R.array.names);
+
         ListView la = (ListView) findViewById(R.id.listView);
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, strings);
 
         la.setAdapter(adapter);
-
-
-
     }
 }
