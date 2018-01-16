@@ -11,27 +11,28 @@ import java.util.HashMap;
 
 public class GalleryActivity extends AppCompatActivity {
 
-/*
-    String[] strings = {"kunne ikke","laste inn fra","stringarray i xml"};
+
+    Integer[] images = {R.drawable.emilracerbil, R.drawable.ekrof, R.drawable.gumman};
+
     HashMap<Integer, String> pic;
 
-*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
 
-        /*
-        pic = new HashMap<String, Integer>();
+
+        pic = new HashMap<Integer, String>();
         pic.put(R.drawable.ekrof, "Jonas");
         pic.put(R.drawable.emilracerbil, "Emil");
         pic.put(R.drawable.gumman, "Trygve");
 
-        strings = getResources().getStringArray(R.array.names);
-*/
         GridView gw = (GridView) findViewById(R.id.grid);
-        gw.setAdapter(new ImageAdapter(this));
+        ImageAdapter adapter = new ImageAdapter(this);
+        adapter.map = pic;
+        gw.setAdapter(adapter);
+
 
         gw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,

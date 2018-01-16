@@ -10,6 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import java.util.HashMap;
+
 
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
@@ -19,7 +21,7 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     public int getCount() {
-        return mThumbIds.length;
+        return map.size();
     }
 
     public Object getItem(int position) {
@@ -43,14 +45,10 @@ public class ImageAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource(mThumbIds[position]);
+        imageView.setImageResource((int) map.keySet().toArray()[position]);
         return imageView;
     }
 
     // references to our images
-    private Integer[] mThumbIds = {
-            R.drawable.gumman, R.drawable.ekrof,
-            R.drawable.emilracerbil
-
-    };
+    public HashMap<Integer, String> map;
 }
