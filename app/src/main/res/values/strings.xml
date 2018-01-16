@@ -5,6 +5,7 @@
     <string name="button3text">Learning mode</string>
     <string name="learningText">Who is this???</string>
     <string name="name">Write name here...</string>
+    <string name="guess">Guess!</string>
 
     <string-array name="names">
         <item>Emil</item>
