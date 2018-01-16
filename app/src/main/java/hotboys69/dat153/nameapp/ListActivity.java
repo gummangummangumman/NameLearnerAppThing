@@ -9,7 +9,7 @@ public class ListActivity extends AppCompatActivity {
 
 
 
-    String[] strings = {"1","2","3"};
+    String[] strings = {"kunne ikke","laste inn fra","stringarray i xml"};
 
 
     @Override
