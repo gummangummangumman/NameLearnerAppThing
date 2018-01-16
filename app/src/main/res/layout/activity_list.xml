@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context="hotboys69.dat153.nameapp.ListActivity">
 
+    <ImageView
+        android:id="@+id/listPicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="130dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
