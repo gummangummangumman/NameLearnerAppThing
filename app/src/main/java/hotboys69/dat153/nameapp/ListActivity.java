@@ -31,7 +31,7 @@ public class ListActivity extends AppCompatActivity {
         la.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast toast = Toast.makeText(view.getContext(), ""+i, 50);
+                Toast toast = Toast.makeText(view.getContext(), strings[i], 50);
                 toast.show();
             }
         });
