@@ -34,10 +34,12 @@ public class GalleryActivity extends AppCompatActivity {
         gw.setAdapter(adapter);
 
 
+        //TODO finne ut av hvorfor id bare gir 0
+        //TODO finne den ekte IDen til bildet man trykker på
         gw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                Toast.makeText(GalleryActivity.this, "" + position,
+                Toast.makeText(GalleryActivity.this, (int) id+"",
                         Toast.LENGTH_SHORT).show();
             }
         });
