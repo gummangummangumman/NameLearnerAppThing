@@ -16,7 +16,7 @@ public class ListActivity extends AppCompatActivity {
 
 
     String[] strings = {"kunne ikke","laste inn fra","stringarray i xml"};
-    HashMap<String, Integer> pictures;
+    public HashMap<String, Integer> pictures;
 
 
     @Override
