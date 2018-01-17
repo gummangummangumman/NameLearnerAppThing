@@ -20,7 +20,7 @@ public class ListActivity extends AppCompatActivity {
 
 
 
-    //String[] strings = {"kunne ikke","laste inn fra","stringarray i xml"};
+    
     public HashMap<String, Integer> pictures;
     public ArrayList<String> names;
 
@@ -40,11 +40,9 @@ public class ListActivity extends AppCompatActivity {
 
         names = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.names)));
 
-        //strings = getResources().getStringArray(R.array.names);
-
         ListView la = (ListView) findViewById(R.id.listView);
 
-        //ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, strings);
+
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, names);
 
         la.setAdapter(adapter);
@@ -55,7 +53,6 @@ public class ListActivity extends AppCompatActivity {
                 Toast toast = new Toast(view.getContext());
                 ImageView img = new ImageView(view.getContext());
                 img.setImageResource(pictures.get(names.get(i)));
-                //img.setImageResource(pictures.get(strings[i]));
                 toast.setView(img);
                 toast.show();
             }
