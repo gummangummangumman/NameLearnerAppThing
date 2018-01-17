@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addPersonButton);
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 goToAddPersonPage();

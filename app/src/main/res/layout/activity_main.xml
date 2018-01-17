@@ -76,13 +76,13 @@
 
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            app:backgroundTint="@color/colorPrimaryDark"
-            android:src="@drawable/plus"
+            android:id="@+id/addPersonButton"
             android:layout_width="73dp"
             android:layout_height="64dp"
             android:layout_gravity="bottom|right"
             android:layout_margin="48dp"
+            android:src="@drawable/plus"
+            app:backgroundTint="@color/colorPrimaryDark"
             tools:layout_editor_absoluteX="290dp"
             tools:layout_editor_absoluteY="490dp" />
 
