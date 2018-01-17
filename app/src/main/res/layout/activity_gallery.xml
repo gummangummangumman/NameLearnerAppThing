@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="hotboys69.dat153.nameapp.GalleryActivity">
+    tools:context="hotboys69.dat153.nameapp.GalleryActivity"
+    android:name="hotboys69.dat153.nameapp.GalleryActivity">
+
 
     <GridView
         android:id="@+id/grid"

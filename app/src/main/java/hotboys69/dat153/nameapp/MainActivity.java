@@ -6,15 +6,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
 
+public class MainActivity extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
 
         Button button1 = findViewById(R.id.button);
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     public void goToListPage()
     {
         Intent listPageIntent = new Intent(this, ListActivity.class);
@@ -63,4 +66,6 @@ public class MainActivity extends AppCompatActivity {
         Intent learningPageIntent = new Intent(this, LearningActivity.class);
         startActivity(learningPageIntent);
     }
+
+
 }

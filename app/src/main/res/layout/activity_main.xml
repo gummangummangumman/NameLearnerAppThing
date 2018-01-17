@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:name="hotboys69.dat153.nameapp.MainActivity"
     tools:context="hotboys69.dat153.nameapp.MainActivity">
+
 
     <Button
         android:id="@+id/button3"
@@ -62,4 +64,6 @@
         app:layout_constraintTop_toBottomOf="@+id/button3"
         app:layout_constraintVertical_bias="1.0" />
 
+
 </android.support.constraint.ConstraintLayout>
+
