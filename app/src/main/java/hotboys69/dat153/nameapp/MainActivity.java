@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Do something!
+                goToAddPersonPage();
             }
         });
 
@@ -76,6 +76,13 @@ public class MainActivity extends AppCompatActivity {
         Intent learningPageIntent = new Intent(this, LearningActivity.class);
         startActivity(learningPageIntent);
     }
+
+    public void goToAddPersonPage()
+    {
+        Intent addPersonPageIntent = new Intent(this, AddPersonActivity.class);
+        startActivity(addPersonPageIntent);
+    }
+
 
 
 }
