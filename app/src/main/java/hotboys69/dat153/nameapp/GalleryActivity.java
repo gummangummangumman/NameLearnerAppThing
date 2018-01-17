@@ -52,7 +52,7 @@ public class GalleryActivity extends AppCompatActivity {
                                     int position, long id) {
 
 
-                Toast.makeText(GalleryActivity.this, ""+ id + ", " + R.drawable.gumman + ", " + pic.get((int) id),
+                Toast.makeText(GalleryActivity.this, ""+ pic.get((int) id),
                         Toast.LENGTH_SHORT).show();
             }
         });
