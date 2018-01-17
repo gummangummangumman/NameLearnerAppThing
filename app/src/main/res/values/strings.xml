@@ -6,6 +6,7 @@
     <string name="learningText">Who is this???</string>
     <string name="name">Write name here...</string>
     <string name="guess">Guess!</string>
+    <string name="add">Add a picture and a name</string>
 
     <string-array name="names">
         <item>Emil</item>

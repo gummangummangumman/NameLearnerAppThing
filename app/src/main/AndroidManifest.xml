@@ -16,26 +16,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ListActivity"
+            android:parentActivityName=".MainActivity" />
 
-        <activity android:name="hotboys69.dat153.nameapp.ListActivity"
-            android:parentActivityName="hotboys69.dat153.nameapp.MainActivity" />
-            <meta-data
-                android:name="android.support.MainActivity"
-                android:value="hotboys69.dat153.nameapp.MainActivity"/>
-
-        <activity android:name="hotboys69.dat153.nameapp.GalleryActivity"
-            android:parentActivityName="hotboys69.dat153.nameapp.MainActivity" />
         <meta-data
             android:name="android.support.MainActivity"
-            android:value="hotboys69.dat153.nameapp.MainActivity"/>
+            android:value="hotboys69.dat153.nameapp.MainActivity" />
 
-        <activity android:name="hotboys69.dat153.nameapp.LearningActivity"
-            android:parentActivityName="hotboys69.dat153.nameapp.MainActivity">
+        <activity
+            android:name=".GalleryActivity"
+            android:parentActivityName=".MainActivity" />
+
+        <meta-data
+            android:name="android.support.MainActivity"
+            android:value="hotboys69.dat153.nameapp.MainActivity" />
+
+        <activity
+            android:name=".LearningActivity"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.MainActivity"
-                android:value="hotboys69.dat153.nameapp.MainActivity"/>
+                android:value="hotboys69.dat153.nameapp.MainActivity" />
         </activity>
-
+        <activity android:name=".AddPersonActivity"></activity>
     </application>
 
 </manifest>
