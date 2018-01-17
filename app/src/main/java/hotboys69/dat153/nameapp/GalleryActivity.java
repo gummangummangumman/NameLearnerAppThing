@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GalleryActivity extends AppCompatActivity {
@@ -28,13 +29,20 @@ public class GalleryActivity extends AppCompatActivity {
 
 
         pic = new HashMap<Integer, String>();
-        pic.put(R.drawable.ekrof, "Jonas");
-        pic.put(R.drawable.emilracerbil, "Emil");
         pic.put(R.drawable.gumman, "Trygve");
+        pic.put(R.drawable.emilracerbil, "Emil");
+        pic.put(R.drawable.ekrof, "Jonas");
+
+
+        ArrayList<Integer> positions = new ArrayList<Integer>();
+        positions.add(R.drawable.ekrof);
+        positions.add(R.drawable.emilracerbil);
+        positions.add(R.drawable.gumman);
 
         GridView gw = (GridView) findViewById(R.id.grid);
         ImageAdapter adapter = new ImageAdapter(this);
         adapter.map = pic;
+        adapter.positions = positions;
         gw.setAdapter(adapter);
 
 
@@ -42,7 +50,9 @@ public class GalleryActivity extends AppCompatActivity {
         gw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                Toast.makeText(GalleryActivity.this, (int) position+"",
+
+
+                Toast.makeText(GalleryActivity.this, ""+ id + ", " + R.drawable.gumman + ", " + pic.get((int) id),
                         Toast.LENGTH_SHORT).show();
             }
         });

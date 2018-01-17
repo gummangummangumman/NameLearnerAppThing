@@ -10,11 +10,18 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
+
+    // maps the image references to the names
+    public HashMap<Integer, String> map;
+
+    //reference of pic0 is on positions[0] etc
+    public ArrayList<Integer> positions;
 
     public ImageAdapter(Context c) {
         mContext = c;
@@ -29,7 +36,7 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     public long getItemId(int position) {
-        return 0;
+        return positions.get(position);
     }
 
     // create a new ImageView for each item referenced by the Adapter
@@ -45,10 +52,9 @@ public class ImageAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource((int) map.keySet().toArray()[position]);
+        imageView.setImageResource((int) positions.get(position));
         return imageView;
     }
 
-    // references to our images
-    public HashMap<Integer, String> map;
+
 }
