@@ -12,7 +12,6 @@ import android.widget.Toast;
 public class LearningActivity extends AppCompatActivity {
 
     int score;
-   // TextView scoreView = (TextView) findViewById(R.id.score);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
