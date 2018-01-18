@@ -6,9 +6,13 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class LearningActivity extends AppCompatActivity {
+
+    int score;
+   // TextView scoreView = (TextView) findViewById(R.id.score);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +21,10 @@ public class LearningActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        final TextView scoreView = (TextView) findViewById(R.id.score);
+        score = 0;
+        scoreView.setText("Score: " + score);
+
 
         Button guessButton = findViewById(R.id.guessButton);
         guessButton.setOnClickListener(new View.OnClickListener() {
@@ -24,6 +32,10 @@ public class LearningActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Toast toast = Toast.makeText(view.getContext(), "yo this aint implemented", 1000);
                 toast.show();
+
+                //Om det är rätt svar ökas score med 1
+                score++;
+                scoreView.setText("Score: "+ score);
             }
         });
     }
