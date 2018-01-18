@@ -1,5 +1,6 @@
 package hotboys69.dat153.nameapp;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -47,9 +48,12 @@ public class AddPersonActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                String name = nameText.getText().toString();
-                Toast.makeText(getBaseContext(), name+" + "+imageURI.toString(),
-                        Toast.LENGTH_SHORT).show();
+                //String name = nameText.getText().toString();
+                //Toast.makeText(getBaseContext(), name+" + "+imageURI.toString(),
+                //        Toast.LENGTH_SHORT).show();
+
+                imageView = (ImageView) findViewById(R.id.imageView2);
+                imageView.setImageURI(Uri.parse("android.resource://hotboys69.dat153.nameapp/drawable/gumman"));
             }
 
         });

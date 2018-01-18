@@ -15,8 +15,7 @@ import java.util.HashMap;
 public class GalleryActivity extends AppCompatActivity {
 
 
-    Integer[] images = {R.drawable.emilracerbil, R.drawable.ekrof, R.drawable.gumman};
-
+    ArrayList<Integer> positions;
     HashMap<Integer, String> pic;
 
 
@@ -34,10 +33,12 @@ public class GalleryActivity extends AppCompatActivity {
         pic.put(R.drawable.ekrof, "Jonas");
 
 
-        ArrayList<Integer> positions = new ArrayList<Integer>();
+        positions = new ArrayList<Integer>();
         positions.add(R.drawable.ekrof);
         positions.add(R.drawable.emilracerbil);
         positions.add(R.drawable.gumman);
+
+
 
         GridView gw = (GridView) findViewById(R.id.grid);
         ImageAdapter adapter = new ImageAdapter(this);

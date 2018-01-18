@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -21,8 +22,10 @@ public class ListActivity extends AppCompatActivity {
 
 
     
-    public HashMap<String, Integer> pictures;
-    public ArrayList<String> names;
+    //public HashMap<String, Integer> pictures;
+    //public ArrayList<String> names;
+
+
 
 
     @Override
@@ -33,14 +36,23 @@ public class ListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
+        /*
+
         pictures = new HashMap<String, Integer>();
         pictures.put("Jonas", R.drawable.ekrof);
         pictures.put("Emil", R.drawable.emilracerbil);
         pictures.put("Trygve", R.drawable.gumman);
 
-        names = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.names)));
 
+
+        names = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.names)));
+        */
         ListView la = (ListView) findViewById(R.id.listView);
+
+        ArrayList<String> names = new ArrayList<String>();
+        for(Person p : Data.persons){
+            names.add(p.getName());
+        }
 
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, names);
@@ -52,7 +64,8 @@ public class ListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast toast = new Toast(view.getContext());
                 ImageView img = new ImageView(view.getContext());
-                img.setImageResource(pictures.get(names.get(i)));
+                //img.setImageResource(pictures.get(names.get(i)));
+                img.setImageURI(Data.persons.get(i).getPic());
                 toast.setView(img);
                 toast.show();
             }
