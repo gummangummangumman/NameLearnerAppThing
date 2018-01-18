@@ -16,6 +16,11 @@ public class Person {
         this.pic = Uri.parse(pic);
     }
 
+    public Person(String name, Uri pic){
+        this.name = name;
+        this.pic = pic;
+    }
+
     public String getName() {
         return name;
     }

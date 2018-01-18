@@ -23,7 +23,7 @@ public class Data {
 
     /**
      * gets a random person. used in the learning thing
-     * @return
+     * @return random person
      */
     public static Person getRandomPerson(){
         return persons.get((int) Math.floor(Math.random() * persons.size()));
