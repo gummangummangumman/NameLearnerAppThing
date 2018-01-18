@@ -49,8 +49,11 @@ public class AddPersonActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String name = nameText.getText().toString();
-                Toast.makeText(getBaseContext(), name,
+                Toast.makeText(getBaseContext(), name + ", " + imageURI,
                         Toast.LENGTH_SHORT).show();
+
+                Person newPerson = new Person(name, imageURI);
+                Data.persons.add(newPerson);
             }
 
         });
