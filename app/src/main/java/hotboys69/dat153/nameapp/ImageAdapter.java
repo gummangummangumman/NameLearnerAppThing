@@ -16,18 +16,13 @@ import java.util.HashMap;
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
 
-    // maps the image references to the names
-    public HashMap<Integer, String> map;
-
-    //reference of pic0 is on positions[0] etc
-    public ArrayList<Integer> positions;
 
     public ImageAdapter(Context c) {
         mContext = c;
     }
 
     public int getCount() {
-        return map.size();
+        return Data.persons.size();
     }
 
     public Object getItem(int position) {
@@ -35,7 +30,7 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     public long getItemId(int position) {
-        return positions.get(position);
+        return 0;
     }
 
     // create a new ImageView for each item referenced by the Adapter
@@ -52,7 +47,7 @@ public class ImageAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource((int) positions.get(position));
+        imageView.setImageURI(Data.persons.get(position).getPic());
         return imageView;
     }
 

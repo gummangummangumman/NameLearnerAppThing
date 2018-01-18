@@ -20,14 +20,6 @@ import java.util.List;
 public class ListActivity extends AppCompatActivity {
 
 
-
-    
-    //public HashMap<String, Integer> pictures;
-    //public ArrayList<String> names;
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,18 +27,6 @@ public class ListActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-        /*
-
-        pictures = new HashMap<String, Integer>();
-        pictures.put("Jonas", R.drawable.ekrof);
-        pictures.put("Emil", R.drawable.emilracerbil);
-        pictures.put("Trygve", R.drawable.gumman);
-
-
-
-        names = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.names)));
-        */
         ListView la = (ListView) findViewById(R.id.listView);
 
         ArrayList<String> names = new ArrayList<String>();
@@ -64,7 +44,6 @@ public class ListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast toast = new Toast(view.getContext());
                 ImageView img = new ImageView(view.getContext());
-                //img.setImageResource(pictures.get(names.get(i)));
                 img.setImageURI(Data.persons.get(i).getPic());
                 toast.setView(img);
                 toast.show();

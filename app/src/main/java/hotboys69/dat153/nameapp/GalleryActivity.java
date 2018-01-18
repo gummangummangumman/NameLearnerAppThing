@@ -15,10 +15,6 @@ import java.util.HashMap;
 public class GalleryActivity extends AppCompatActivity {
 
 
-    ArrayList<Integer> positions;
-    HashMap<Integer, String> pic;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,24 +22,8 @@ public class GalleryActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-        pic = new HashMap<Integer, String>();
-        pic.put(R.drawable.gumman, "Trygve");
-        pic.put(R.drawable.emilracerbil, "Emil");
-        pic.put(R.drawable.ekrof, "Jonas");
-
-
-        positions = new ArrayList<Integer>();
-        positions.add(R.drawable.ekrof);
-        positions.add(R.drawable.emilracerbil);
-        positions.add(R.drawable.gumman);
-
-
-
         GridView gw = (GridView) findViewById(R.id.grid);
         ImageAdapter adapter = new ImageAdapter(this);
-        adapter.map = pic;
-        adapter.positions = positions;
         gw.setAdapter(adapter);
 
 
@@ -52,9 +32,7 @@ public class GalleryActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
 
-
-                Toast.makeText(GalleryActivity.this, ""+ pic.get((int) id),
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(GalleryActivity.this, ""+Data.persons.get(position).getName(), Toast.LENGTH_SHORT).show();
             }
         });
 
