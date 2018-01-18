@@ -20,4 +20,12 @@ public class Data {
         persons.add(trygve);
         return persons;
     }
+
+    /**
+     * gets a random person. used in the learning thing
+     * @return
+     */
+    public static Person getRandomPerson(){
+        return persons.get((int) Math.floor(Math.random() * persons.size()));
+    }
 }
