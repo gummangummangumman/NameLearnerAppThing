@@ -24,6 +24,8 @@ public class AddPersonActivity extends AppCompatActivity {
     public ImageView imageView = null;
     public EditText nameText = null;
 
+    private Uri imageURI;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class AddPersonActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String name = nameText.getText().toString();
-                Toast.makeText(getBaseContext(), name+" not implemented 💩",
+                Toast.makeText(getBaseContext(), name+" + "+imageURI.toString(),
                         Toast.LENGTH_SHORT).show();
             }
 
@@ -64,17 +66,16 @@ public class AddPersonActivity extends AppCompatActivity {
                 return;
             }
             Uri selectedImage = data.getData();
+            imageURI = selectedImage;
             try {
                 Bitmap bitmapImage = decodeBitmap(selectedImage );
-            // Show the Selected Image on ImageView
-             imageView = (ImageView) findViewById(R.id.imageView2);
-            imageView.setImageBitmap(bitmapImage);
-
+                // Show the Selected Image on ImageView
+                imageView = (ImageView) findViewById(R.id.imageView2);
+                imageView.setImageBitmap(bitmapImage);
         }
-
              catch (FileNotFoundException e) {
-                Log.i("TAG", "Some exception " + e);
-                e.printStackTrace();
+             Log.i("TAG", "Some exception " + e);
+             e.printStackTrace();
             }
 
 
