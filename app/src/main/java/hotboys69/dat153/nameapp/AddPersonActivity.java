@@ -3,16 +3,15 @@ package hotboys69.dat153.nameapp;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Button;
 import java.io.*;
-import java.net.URI;
 import android.graphics.*;
-import 	android.content.Context;
 import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.EditText;
@@ -24,8 +23,10 @@ public class AddPersonActivity extends AppCompatActivity {
     public int PICK_IMAGE = 1;
     public ImageView imageView = null;
     public EditText nameText = null;
+    private Bitmap bitmap = null;
+    private Uri selectedImage = null;
 
-    private Uri imageURI;
+
 
 
     @Override
@@ -41,6 +42,7 @@ public class AddPersonActivity extends AppCompatActivity {
                 i.setType("image/*");
                 startActivityForResult(Intent.createChooser(i, "Select Picture"), PICK_IMAGE);
             }
+
         });
 
         nameText = (EditText) findViewById(R.id.nameToAdd);
@@ -49,10 +51,10 @@ public class AddPersonActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String name = nameText.getText().toString();
-                Toast.makeText(getBaseContext(), name + ", " + imageURI,
+                Toast.makeText(getBaseContext(), name + " added " ,
                         Toast.LENGTH_SHORT).show();
 
-                Person newPerson = new Person(name, imageURI);
+                Person newPerson = new Person(name,selectedImage);
                 Data.persons.add(newPerson);
             }
 
@@ -61,7 +63,7 @@ public class AddPersonActivity extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //super.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE) {
             if (data == null) {
 
@@ -69,23 +71,23 @@ public class AddPersonActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 return;
             }
-            Uri selectedImage = data.getData();
-            imageURI = selectedImage;
+             selectedImage = data.getData();
+           // data.putExtra("URI", selectedImage.toString());
+
             try {
-                Bitmap bitmapImage = decodeBitmap(selectedImage );
+                bitmap = decodeBitmap(selectedImage);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
                 // Show the Selected Image on ImageView
                 imageView = (ImageView) findViewById(R.id.imageView2);
-                imageView.setImageBitmap(bitmapImage);
-        }
-             catch (FileNotFoundException e) {
-             Log.i("TAG", "Some exception " + e);
-             e.printStackTrace();
-            }
+                imageView.setImageBitmap(bitmap);
 
 
         }
 
     }
+
 
     public  Bitmap decodeBitmap(Uri selectedImage) throws FileNotFoundException {
         BitmapFactory.Options o = new BitmapFactory.Options();

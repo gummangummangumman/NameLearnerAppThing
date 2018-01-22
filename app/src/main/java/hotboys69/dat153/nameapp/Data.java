@@ -1,5 +1,13 @@
 package hotboys69.dat153.nameapp;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+
+import java.io.File;
+import java.net.URI;
 import java.util.ArrayList;
 
 /**
@@ -18,6 +26,7 @@ public class Data {
         persons.add(jonas);
         Person trygve = new Person("trygve", "android.resource://hotboys69.dat153.nameapp/drawable/gumman");
         persons.add(trygve);
+
         return persons;
     }
 
@@ -28,4 +37,5 @@ public class Data {
     public static Person getRandomPerson(){
         return persons.get((int) Math.floor(Math.random() * persons.size()));
     }
+
 }

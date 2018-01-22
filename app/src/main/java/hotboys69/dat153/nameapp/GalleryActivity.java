@@ -49,4 +49,6 @@ public class GalleryActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
