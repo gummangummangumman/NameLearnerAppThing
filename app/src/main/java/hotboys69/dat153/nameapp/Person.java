@@ -19,7 +19,13 @@ public class Person {
     }
 
     public Bitmap getBitmap() {
-        return bitmap;
+
+        if(bitmap!=null){
+            return bitmap;
+        }else{
+            bitmap = bitmap;
+            return bitmap;
+        }
     }
 
     public void setBitmap(Bitmap bitmap) {

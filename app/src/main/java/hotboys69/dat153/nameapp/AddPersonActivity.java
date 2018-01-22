@@ -54,7 +54,8 @@ public class AddPersonActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), name + " added " ,
                         Toast.LENGTH_SHORT).show();
 
-                Person newPerson = new Person(name,selectedImage);
+                Person newPerson = new Person(name, bitmap);
+                //Person newPerson = new Person(name,selectedImage);
                 Data.persons.add(newPerson);
             }
 

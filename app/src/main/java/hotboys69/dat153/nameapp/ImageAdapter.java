@@ -52,11 +52,12 @@ public class ImageAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        try {
-            bi = decodeBitmap(Data.persons.get(position).getPic());
-        } catch (Exception e) {}
-
-
+        bi = Data.persons.get(position).getBitmap();
+        if(bi==null){
+            try {
+                bi = decodeBitmap(Data.persons.get(position).getPic());
+            } catch (Exception e) {}
+        }
         imageView.setImageBitmap(bi);
         return imageView;
     }
