@@ -20,6 +20,7 @@ public class LearningActivity extends AppCompatActivity {
     Data d;
     ImageView img;
     Bitmap bi;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +66,7 @@ public class LearningActivity extends AppCompatActivity {
                 bi = p.getBitmap();
                 if(bi==null){
                     try {
-                        bi = HelperClass.decodeBitmap(getBaseContext(),p.getPic());
+                        bi = HelperClass.decodeBitmap(context,p.getPic());
                     } catch (Exception e) {}
                 }
 
