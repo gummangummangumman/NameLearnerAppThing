@@ -23,6 +23,7 @@ public class AddPersonActivity extends AppCompatActivity {
     public ImageView imageView = null;
     public EditText nameText = null;
     private Bitmap bitmap = null;
+    private Uri selectedImage = null;
 
 
     @Override
@@ -34,7 +35,7 @@ public class AddPersonActivity extends AppCompatActivity {
         addPictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+                Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 i.setType("image/*");
                 startActivityForResult(Intent.createChooser(i, "Select Picture"), PICK_IMAGE);
             }
@@ -66,8 +67,8 @@ public class AddPersonActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), name + " added " ,
                         Toast.LENGTH_SHORT).show();
 
-                Person newPerson = new Person(name, bitmap);
-                //Person newPerson = new Person(name,selectedImage);
+                //Person newPerson = new Person(name, bitmap);
+                Person newPerson = new Person(name,selectedImage);
                 Data.persons.add(newPerson);
             }
 
@@ -84,7 +85,7 @@ public class AddPersonActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 return;
             }
-            Uri selectedImage = data.getData();
+            selectedImage = data.getData();
            // data.putExtra("URI", selectedImage.toString());
 
             try {
