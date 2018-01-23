@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class ListActivity extends AppCompatActivity {
 
-        private Context context = this.getBaseContext();
+        private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class ListActivity extends AppCompatActivity {
                 Toast toast = new Toast(view.getContext());
                 ImageView img = new ImageView(view.getContext());
 
-                //henter bitmapen, eller URI hvis den heller har det
+                //henter bitmapen
                 Bitmap bi = Data.persons.get(i).getBitmap();
                 if(bi==null){
                     try {
