@@ -1,9 +1,8 @@
 package hotboys69.dat153.nameapp;
 
-import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -24,9 +23,6 @@ public class AddPersonActivity extends AppCompatActivity {
     public ImageView imageView = null;
     public EditText nameText = null;
     private Bitmap bitmap = null;
-    private Uri selectedImage = null;
-
-
 
 
     @Override
@@ -45,7 +41,7 @@ public class AddPersonActivity extends AppCompatActivity {
 
         });
 
-        nameText = (EditText) findViewById(R.id.nameToAdd);
+        nameText = findViewById(R.id.nameToAdd);
         Button addButton = findViewById(R.id.addButton);
         addButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -72,16 +68,16 @@ public class AddPersonActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 return;
             }
-             selectedImage = data.getData();
+            Uri selectedImage = data.getData();
            // data.putExtra("URI", selectedImage.toString());
 
             try {
-                bitmap = decodeBitmap(selectedImage);
+                bitmap = HelperClass.decodeBitmap(this, selectedImage);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
                 // Show the Selected Image on ImageView
-                imageView = (ImageView) findViewById(R.id.imageView2);
+                imageView = findViewById(R.id.imageView2);
                 imageView.setImageBitmap(bitmap);
 
 
@@ -90,27 +86,6 @@ public class AddPersonActivity extends AppCompatActivity {
     }
 
 
-    public  Bitmap decodeBitmap(Uri selectedImage) throws FileNotFoundException {
-        BitmapFactory.Options o = new BitmapFactory.Options();
-        o.inJustDecodeBounds = true;
-        BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o);
 
-        final int REQUIRED_SIZE = 100;
-
-        int width_tmp = o.outWidth, height_tmp = o.outHeight;
-        int scale = 1;
-        while (true) {
-            if (width_tmp / 2 < REQUIRED_SIZE || height_tmp / 2 < REQUIRED_SIZE) {
-                break;
-            }
-            width_tmp /= 2;
-            height_tmp /= 2;
-            scale *= 2;
-        }
-
-        BitmapFactory.Options o2 = new BitmapFactory.Options();
-        o2.inSampleSize = scale;
-        return BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o2);
-    }
 }
 

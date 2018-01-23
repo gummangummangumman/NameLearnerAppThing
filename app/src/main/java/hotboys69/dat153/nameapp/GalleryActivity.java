@@ -9,9 +9,6 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class GalleryActivity extends AppCompatActivity {
 
 
@@ -22,7 +19,7 @@ public class GalleryActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        GridView gw = (GridView) findViewById(R.id.grid);
+        GridView gw = findViewById(R.id.grid);
         ImageAdapter adapter = new ImageAdapter(this);
         gw.setAdapter(adapter);
 

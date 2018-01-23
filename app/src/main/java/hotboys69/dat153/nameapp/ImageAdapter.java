@@ -5,22 +5,15 @@ package hotboys69.dat153.nameapp;
  */
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
-    private Bitmap bi;
 
     public ImageAdapter(Context c) {
         mContext = c;
@@ -52,10 +45,10 @@ public class ImageAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        bi = Data.persons.get(position).getBitmap();
-        if(bi==null){
+        Bitmap bi = Data.persons.get(position).getBitmap();
+        if(bi ==null){
             try {
-                bi = decodeBitmap(Data.persons.get(position).getPic());
+                bi = HelperClass.decodeBitmap(mContext,Data.persons.get(position).getPic());
             } catch (Exception e) {}
         }
         imageView.setImageBitmap(bi);
@@ -63,26 +56,5 @@ public class ImageAdapter extends BaseAdapter {
     }
 
 
-    public Bitmap decodeBitmap(Uri selectedImage) throws FileNotFoundException {
-        BitmapFactory.Options o = new BitmapFactory.Options();
-        o.inJustDecodeBounds = true;
-        BitmapFactory.decodeStream(mContext.getContentResolver().openInputStream(selectedImage), null, o);
 
-        final int REQUIRED_SIZE = 100;
-
-        int width_tmp = o.outWidth, height_tmp = o.outHeight;
-        int scale = 1;
-        while (true) {
-            if (width_tmp / 2 < REQUIRED_SIZE || height_tmp / 2 < REQUIRED_SIZE) {
-                break;
-            }
-            width_tmp /= 2;
-            height_tmp /= 2;
-            scale *= 2;
-        }
-
-        BitmapFactory.Options o2 = new BitmapFactory.Options();
-        o2.inSampleSize = scale;
-        return BitmapFactory.decodeStream(mContext.getContentResolver().openInputStream(selectedImage), null, o2);
-    }
 }
