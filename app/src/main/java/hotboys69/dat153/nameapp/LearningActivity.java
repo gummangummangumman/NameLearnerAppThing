@@ -48,7 +48,7 @@ public class LearningActivity extends AppCompatActivity {
                 String guess = et.getText().toString();
 
 
-                if(guess.equals(p.getName())) {
+                if(guess.equalsIgnoreCase(p.getName())) {
                     Toast toast = Toast.makeText(view.getContext(), "Correct!", 1000);
                     toast.show();
                     score++;
