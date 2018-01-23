@@ -18,7 +18,7 @@ import android.widget.EditText;
 
 public class AddPersonActivity extends AppCompatActivity {
 
-
+    private static final int CAMERA_REQUEST = 1888;
     public int PICK_IMAGE = 1;
     public ImageView imageView = null;
     public EditText nameText = null;
@@ -40,6 +40,22 @@ public class AddPersonActivity extends AppCompatActivity {
             }
 
         });
+
+
+
+        ImageButton addPictureFromCameraButton = findViewById(R.id.cameraButton);
+        addPictureFromCameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, CAMERA_REQUEST);
+
+            }
+
+        });
+
+
 
         nameText = findViewById(R.id.nameToAdd);
         Button addButton = findViewById(R.id.addButton);
@@ -80,6 +96,14 @@ public class AddPersonActivity extends AppCompatActivity {
                 imageView = findViewById(R.id.imageView2);
                 imageView.setImageBitmap(bitmap);
 
+
+        }
+        else {
+
+            imageView = findViewById(R.id.imageView2);
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            imageView.setImageBitmap(photo);
+        } {
 
         }
 
