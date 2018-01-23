@@ -88,22 +88,18 @@ public class AddPersonActivity extends AppCompatActivity {
             selectedImage = data.getData();
            // data.putExtra("URI", selectedImage.toString());
 
-            try {
-                bitmap = HelperClass.decodeBitmap(this, selectedImage);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+
                 // Show the Selected Image on ImageView
                 imageView = findViewById(R.id.imageView2);
-                imageView.setImageBitmap(bitmap);
+                imageView.setImageURI(selectedImage);
 
 
         }
         else {
-
+            selectedImage = data.getData();
             imageView = findViewById(R.id.imageView2);
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-            imageView.setImageBitmap(photo);
+            //Bitmap photo = (Bitmap) data.getExtras().get("data");
+            imageView.setImageURI(selectedImage);
         } {
 
         }
