@@ -50,13 +50,13 @@ public class LearningActivity extends AppCompatActivity {
 
 
                 if(guess.equalsIgnoreCase(p.getName())) {
-                    Toast toast = Toast.makeText(view.getContext(), "Correct!", 1000);
+                    Toast toast = Toast.makeText(view.getContext(), "Correct!", Toast.LENGTH_SHORT);
                     toast.show();
                     score++;
                     scoreView.setText("Score: " + score);
 
                 }else{
-                    Toast toast = Toast.makeText(view.getContext(), "Wrong!", 1000);
+                    Toast toast = Toast.makeText(view.getContext(), "Wrong!", Toast.LENGTH_SHORT);
                     toast.show();
                     score = 0;
                     scoreView.setText("Score: " + score);
@@ -64,7 +64,7 @@ public class LearningActivity extends AppCompatActivity {
 
                 p = Data.getRandomPerson();
 
-                bi = p.getBitmap();
+
                 if(bi==null){
                     try {
                         bi = HelperClass.decodeBitmap(context,p.getPic());
