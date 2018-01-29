@@ -45,16 +45,13 @@ public class ImageAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        Bitmap bi = Data.persons.get(position).getBitmap();
-        if(bi ==null){
-            try {
-                bi = HelperClass.decodeBitmap(mContext,Data.persons.get(position).getPic());
-            } catch (Exception e) {}
-        }
+        Bitmap bi = null;
+        try {
+            bi = HelperClass.decodeBitmap(mContext,Data.persons.get(position).getPic());
+        } catch (Exception e) {}
+
         imageView.setImageBitmap(bi);
         return imageView;
     }
-
-
 
 }
