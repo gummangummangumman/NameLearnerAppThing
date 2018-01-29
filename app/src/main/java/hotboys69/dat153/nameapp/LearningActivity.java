@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -70,6 +71,7 @@ public class LearningActivity extends AppCompatActivity {
                     } catch (Exception e) {}
                 }
 
+                img.startAnimation(AnimationUtils.loadAnimation(getBaseContext(), R.anim.spin));
                 img.setImageBitmap(bi);
                 img.setImageURI(p.getPic());
                 et.setText("");
