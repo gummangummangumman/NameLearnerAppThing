@@ -39,12 +39,14 @@
                 android:name="android.support.MainActivity"
                 android:value="hotboys69.dat153.nameapp.MainActivity" />
         </activity>
-        <activity android:name=".AddPersonActivity"
+        <activity
+            android:name=".AddPersonActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.MainActivity"
                 android:value="hotboys69.dat153.nameapp.MainActivity" />
         </activity>
+        <activity android:name=".activity_create_owner"></activity>
     </application>
 
 </manifest>

@@ -13,4 +13,5 @@
         <item>Jonas</item>
         <item>Trygve</item>
     </string-array>
+    <string name="title_activity_create_owner">activity_create_owner</string>
 </resources>
