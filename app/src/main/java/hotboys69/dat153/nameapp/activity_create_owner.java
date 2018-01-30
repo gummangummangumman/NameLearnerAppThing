@@ -28,6 +28,7 @@ public class activity_create_owner extends AppCompatActivity {
                     prefEditor.putString("name", nameText.getText().toString());
                     prefEditor.commit();
 
+                    setResult(RESULT_OK);
                     finish();
                 } else {
                     Toast.makeText(activity_create_owner.this, "Must write name", Toast.LENGTH_SHORT).show();

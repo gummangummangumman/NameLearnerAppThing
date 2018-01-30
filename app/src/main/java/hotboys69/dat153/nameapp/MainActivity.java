@@ -9,9 +9,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.support.design.widget.FloatingActionButton;
+import android.widget.TextView;
+
+import pl.droidsonroids.gif.GifImageView;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private final int CREATE_OWNER_INTENT_CODE = 0;
+
+    private TextView nameView;
+    private SharedPreferences pref;
 
 
     @Override
@@ -21,16 +29,22 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         setUpMainMenu();
-
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        if(!pref.contains("name")) {
-            startActivity(new Intent(this, activity_create_owner.class));
-        }
+        CheckPreferences();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
 
+    private void CheckPreferences() {
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
+        if(!pref.contains("name")) {
+            gotoChangeNamePage();
+        }
+        nameView.setText(pref.getString("name", "name"));
+    }
+
     private void setUpMainMenu() {
+        nameView = findViewById(R.id.nameTextView);
+
         Button button1 = findViewById(R.id.button);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +72,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        GifImageView mario = findViewById(R.id.mario);
+        mario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoChangeNamePage();
+            }
+        });
+
 
         FloatingActionButton fab = findViewById(R.id.addPersonButton);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +89,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    protected void onActivityResult(int REQUEST_CODE, int RESULT_CODE, Intent intent) {
+        switch (REQUEST_CODE) {
+            case CREATE_OWNER_INTENT_CODE:
+                switch (RESULT_CODE) {
+                    case RESULT_OK:
+                        nameView.setText(pref.getString("name", "name"));
+                        break;
+                }
+                break;
+        }
+    }
 
     public void goToListPage()
     {
@@ -93,6 +126,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(addPersonPageIntent);
     }
 
-
-
+    private void gotoChangeNamePage() {
+        Intent ownerIntent = new Intent(this, activity_create_owner.class);
+        startActivityForResult(ownerIntent, CREATE_OWNER_INTENT_CODE);
+    }
 }
