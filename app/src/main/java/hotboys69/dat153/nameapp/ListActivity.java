@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -33,6 +36,13 @@ public class ListActivity extends AppCompatActivity {
             names.add(p.getName());
         }
 
+        final AnimationSet mAnimationSet = new AnimationSet(false);
+        final Animation fadein = AnimationUtils.loadAnimation(this, R.anim.fadein);
+        final Animation fadeout = AnimationUtils.loadAnimation(this, R.anim.fadeout);
+        fadeout.setStartOffset(1500);
+        mAnimationSet.addAnimation(fadein);
+        mAnimationSet.addAnimation(fadeout);
+
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, names);
 
@@ -41,13 +51,13 @@ public class ListActivity extends AppCompatActivity {
         la.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast toast = new Toast(view.getContext());
-                ImageView img = new ImageView(view.getContext());
+
+                ImageView img = (ImageView) findViewById(R.id.listPicture);
 
                 img.setImageURI(Data.persons.get(i).getPic());
+                img.startAnimation(mAnimationSet);
+                img.setVisibility(View.GONE);
 
-                toast.setView(img);
-                toast.show();
             }
         });
 
