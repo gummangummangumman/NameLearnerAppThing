@@ -12,11 +12,11 @@ public class Data {
 
     public static ArrayList<Person> init(){
         persons = new ArrayList<Person>();
-        Person emil = new Person("emil", "android.resource://hotboys69.dat153.nameapp/drawable/emilracerbil");
+        Person emil = new Person("emil", "android.resource://hotboys69.dat153.nameapp/" + R.drawable.emilracerbil);
         persons.add(emil);
-        Person jonas = new Person("jonas", "android.resource://hotboys69.dat153.nameapp/drawable/ekrof");
+        Person jonas = new Person("jonas", "android.resource://hotboys69.dat153.nameapp/" + R.drawable.ekrof);
         persons.add(jonas);
-        Person trygve = new Person("trygve", "android.resource://hotboys69.dat153.nameapp/drawable/gumman");
+        Person trygve = new Person("trygve", "android.resource://hotboys69.dat153.nameapp/" + R.drawable.gumman);
         persons.add(trygve);
 
         return persons;

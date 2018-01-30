@@ -44,13 +44,8 @@ public class ListActivity extends AppCompatActivity {
                 Toast toast = new Toast(view.getContext());
                 ImageView img = new ImageView(view.getContext());
 
-                //henter bitmapen
-                Bitmap bi = null;
-                try {
-                    bi = HelperClass.decodeBitmap(context, Data.persons.get(i).getPic());
-                } catch (Exception e) {}
+                img.setImageURI(Data.persons.get(i).getPic());
 
-                img.setImageBitmap(bi);
                 toast.setView(img);
                 toast.show();
             }

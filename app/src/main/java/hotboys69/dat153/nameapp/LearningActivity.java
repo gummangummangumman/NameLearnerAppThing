@@ -65,14 +65,8 @@ public class LearningActivity extends AppCompatActivity {
                 p = Data.getRandomPerson();
 
 
-                if(bi==null){
-                    try {
-                        bi = HelperClass.decodeBitmap(context,p.getPic());
-                    } catch (Exception e) {}
-                }
 
                 img.startAnimation(AnimationUtils.loadAnimation(getBaseContext(), R.anim.spin));
-                img.setImageBitmap(bi);
                 img.setImageURI(p.getPic());
                 et.setText("");
 
