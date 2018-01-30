@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
         if(!pref.contains("name")) {
             gotoChangeNamePage();
         }
-        nameView.setText(pref.getString("name", "name"));
     }
 
     private void setUpMainMenu() {
@@ -137,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
             case CREATE_OWNER_INTENT_CODE:
                 switch (RESULT_CODE) {
                     case RESULT_OK:
-                        nameView.setText(pref.getString("name", "name"));
+                       // nameView.setText(pref.getString("name", "name"));
                         break;
                 }
                 break;
