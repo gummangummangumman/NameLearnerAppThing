@@ -29,11 +29,17 @@ public class AddPersonActivity extends AppCompatActivity {
     private Bitmap bitmap = null;
     private Uri selectedImage = null;
 
+    //for filename generation
+    RandomString randomString;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_person);
+
+        randomString = new RandomString(10);
+
 
         ImageButton addPictureButton = findViewById(R.id.imageButton);
         addPictureButton.setOnClickListener(new View.OnClickListener() {
@@ -54,12 +60,6 @@ public class AddPersonActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-
-
-                //Uri bildeUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                //        new ContentValues());
-                //cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.parse("android.resource://hotboys69.dat153.nameapp/drawable/lol"));
-
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);
 
             }
@@ -128,8 +128,10 @@ public class AddPersonActivity extends AppCompatActivity {
         ContextWrapper cw = new ContextWrapper(getApplicationContext());
         // path to /data/data/yourapp/app_data/imageDir
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
-        // Create imageDir
-        File mypath = new File(directory,"newimg.jpg");
+        // generate a random file name
+        String randomFileName = randomString.nextString();
+        // Create file path
+        File mypath = new File(directory,randomFileName + ".png");
 
         FileOutputStream fos = null;
         try {
