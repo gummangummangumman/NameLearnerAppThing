@@ -131,7 +131,7 @@ public class AddPersonActivity extends AppCompatActivity {
         // generate a random file name
         String randomFileName = randomString.nextString();
         // Create file path
-        File mypath = new File(directory,randomFileName + ".jpg");
+        File mypath = new File(directory,randomFileName + ".png");
 
         FileOutputStream fos = null;
         try {
