@@ -31,7 +31,7 @@ public class Person {
     }
 
     public Uri getPic() {
-        return pic;
+                return pic;
     }
 
     public void setPic(Uri pic) {

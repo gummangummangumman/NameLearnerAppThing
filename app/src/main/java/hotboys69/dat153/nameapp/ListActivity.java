@@ -52,7 +52,7 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                ImageView img = (ImageView) findViewById(R.id.listPicture);
+                ImageView img = findViewById(R.id.listPicture);
 
                 img.setImageURI(Data.persons.get(i).getPic());
                 img.startAnimation(mAnimationSet);

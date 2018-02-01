@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         setContentView(R.layout.activity_main);
-        TextView welcomeText = findViewById(R.id.textView3);
+        TextView welcomeText = findViewById(R.id.nameTextView);
         ownerImg = findViewById(R.id.imageOwner);
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
