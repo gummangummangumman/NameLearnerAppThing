@@ -14,18 +14,19 @@ import static org.junit.Assert.*;
 public class RandomStringTest {
 
     RandomString randomString;
+    final int LENGTH_OF_STRING = 10;
 
     @Before
     public void setup()
     {
-        randomString = new RandomString(10);
+        randomString = new RandomString(LENGTH_OF_STRING);
     }
 
 
     @Test
     public void isRightLength() throws Exception {
         String lengthTen = randomString.nextString();
-        assertTrue(lengthTen.length()==10);
+        assertTrue(lengthTen.length()==LENGTH_OF_STRING);
     }
 
     @Test
