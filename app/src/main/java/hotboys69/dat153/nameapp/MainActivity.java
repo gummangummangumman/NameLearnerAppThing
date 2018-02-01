@@ -1,17 +1,13 @@
 package hotboys69.dat153.nameapp;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.location.Location;
 import android.media.Image;
 import android.net.Uri;
 import android.preference.PreferenceManager;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,13 +17,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.widget.TextView;
 
 import pl.droidsonroids.gif.GifImageView;
-
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -47,10 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Uri ownerPicUri = null;
     public ImageView ownerImg = null;
-    private FusedLocationProviderClient mFusedLocationClient;
 
-
-    @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -58,24 +46,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         setContentView(R.layout.activity_main);
-        TextView welcomeText = findViewById(R.id.nameView);
+        TextView welcomeText = findViewById(R.id.textView3);
         ownerImg = findViewById(R.id.imageOwner);
-
-         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-
-        mFusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-// Got last known location. In some rare situations this can be null.
-                        if (location != null) {
-                            TextView loc = findViewById(R.id.textView4);
-                            loc.append(location.toString());
-                            Log.i(null,location.toString());
-// Logic to handle location object
-                        }
-                    }
-                });
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         if(!pref.contains("name")) {
@@ -111,9 +83,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     private void setUpMainMenu() {
-        nameView = findViewById(R.id.nameView);
+        nameView = findViewById(R.id.nameTextView);
 
         Button button1 = findViewById(R.id.button);
         button1.setOnClickListener(new View.OnClickListener() {
@@ -158,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
     @Override
     protected void onActivityResult(int REQUEST_CODE, int RESULT_CODE, Intent intent) {
