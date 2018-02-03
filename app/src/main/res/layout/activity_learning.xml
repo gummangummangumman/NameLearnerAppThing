@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="hotboys69.dat153.nameapp.LearningActivity"
-    android:name="hotboys69.dat153.nameapp.LearningActivity">
+    android:name="hotboys69.dat153.nameapp.LearningActivity"
+    android:id="@+id/learning">
 
 
     <TextView
