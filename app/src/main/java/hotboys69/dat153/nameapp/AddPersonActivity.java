@@ -45,9 +45,11 @@ public class AddPersonActivity extends AppCompatActivity {
         addPictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-                i.setType("image/*");
-                startActivityForResult(Intent.createChooser(i, "Select Picture"), PICK_IMAGE);
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                pickPhoto.setType("image/*");
+                int result = 0;
+                startActivityForResult(pickPhoto, PICK_IMAGE);
             }
 
         });
@@ -78,7 +80,7 @@ public class AddPersonActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
 
                 //Person newPerson = new Person(name, bitmap);
-                Person newPerson = new Person(name,selectedImage);
+                Person newPerson = new Person(name, selectedImage);
                 Data.persons.add(newPerson);
             }
 

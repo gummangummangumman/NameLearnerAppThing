@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -41,9 +43,11 @@ public class activity_create_owner extends AppCompatActivity {
         addPictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-                i.setType("image/*");
-                startActivityForResult(Intent.createChooser(i, "Select Picture"), PICK_IMAGE);
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                pickPhoto.setType("image/*");
+                int result = 0;
+                startActivityForResult(pickPhoto, PICK_IMAGE);
             }
 
         });
@@ -61,27 +65,38 @@ public class activity_create_owner extends AppCompatActivity {
         ownerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(nameText.getText().toString().length() > 0) {
+                if(nameText.getText().toString().length() > 0 &&
+                        selectedImage != null) {
                     SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
                     SharedPreferences.Editor prefEditor = pref.edit();
                     prefEditor.putString("name", nameText.getText().toString());
                     prefEditor.commit();
 
-                    setResult(RESULT_OK);
-                    finish();
-                    String ownerString = selectedImage.toString();
-                    String FILENAME = "owner_image";
-
                     try {
-                        fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-                        fos.write(ownerString.getBytes());
+                        Bitmap imgBm = HelperClass.decodeBitmap(getBaseContext(), selectedImage);
+                        String FILENAME = "owner_image.png";
+
+                        fos = new FileOutputStream(FILENAME);
+                        imgBm.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                        fos.flush();
                         fos.close();
+
+                        //Refresh media
+                        Intent scanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                        scanIntent.setData(selectedImage);
+                        getBaseContext().sendBroadcast(scanIntent);
                     } catch (IOException e) {
                         e.printStackTrace();
+                        Toast.makeText(getBaseContext(),
+                                e.toString(),
+                                Toast.LENGTH_LONG).show();
                     }
 
+                    setResult(RESULT_OK);
+                    finish();
+
                 } else {
-                    Toast.makeText(activity_create_owner.this, "Must write name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity_create_owner.this, "Must write name and select image", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -99,6 +114,7 @@ public class activity_create_owner extends AppCompatActivity {
                 return;
             }
             selectedImage = data.getData();
+
             imageView = findViewById(R.id.imageOwner);
             imageView.setImageURI(selectedImage);
 
