@@ -19,6 +19,7 @@ import android.widget.TextView;
 import pl.droidsonroids.gif.GifImageView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -27,6 +28,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -46,34 +48,49 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         setContentView(R.layout.activity_main);
-        TextView welcomeText = findViewById(R.id.nameTextView);
         ownerImg = findViewById(R.id.imageOwner);
 
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        if(!pref.contains("name")) {
-            startActivity(new Intent(this, activity_create_owner.class));
-        }else {
-           String owner =  pref.getString("name",null);
-            welcomeText.append("Welcome "+owner);
-
-            try {
-//                FileInputStream fos = openFileInput("owner_image");
-
-                 InputStream is = new BufferedInputStream(new FileInputStream("owner_image"));
-
-                Bitmap myBitmap = BitmapFactory.decodeStream(is);
-                ownerImg.setImageBitmap(myBitmap);
-
-            } catch (IllegalArgumentException e) {
-                e.printStackTrace();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
         setUpMainMenu();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        if(hasFocus) {
+            //SetOwnerText();
+        }
+    }
+
+    private void SetOwnerText() {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!pref.contains("name")) {
+            startActivity(new Intent(this, activity_create_owner.class));
+        } else {
+            String owner = pref.getString("name", null);
+
+            TextView welcomeText = findViewById(R.id.nameTextView);
+            welcomeText.setText("Welcome " + owner);
+        }
+    }
+
+    private void ShowOwnerImage() {
+        final String FILENAME = "owner_image.png";
+        File img = getBaseContext().getFileStreamPath("owner_image.png");
+        if(img != null && img.exists()) {
+            try {
+                FileInputStream fis = openFileInput(FILENAME);
+                Bitmap b = BitmapFactory.decodeStream(fis);
+                ownerImg.setImageBitmap(b);
+            } catch(Exception e) {
+                e.printStackTrace();
+                Toast.makeText(this,
+                        "Something went wrong",
+                        Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this,
+                    "Image does not exist",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void CheckPreferences() {
@@ -84,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpMainMenu() {
-        nameView = findViewById(R.id.nameTextView);
+        SetOwnerText();
 
         Button button1 = findViewById(R.id.button);
         button1.setOnClickListener(new View.OnClickListener() {
@@ -136,7 +153,12 @@ public class MainActivity extends AppCompatActivity {
             case CREATE_OWNER_INTENT_CODE:
                 switch (RESULT_CODE) {
                     case RESULT_OK:
-                       // nameView.setText(pref.getString("name", "name"));
+                        try {
+                            SetOwnerText();
+                            ShowOwnerImage();
+                        } catch(Exception e) {
+                            e.printStackTrace();
+                        }
                         break;
                 }
                 break;

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -20,9 +21,13 @@ import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.ConnectException;
+
+import javax.xml.datatype.Duration;
 
 public class activity_create_owner extends AppCompatActivity {
 
@@ -31,6 +36,9 @@ public class activity_create_owner extends AppCompatActivity {
     private Uri selectedImage = null;
     public ImageView imageView = null;
     private FileOutputStream fos = null;
+    private FileInputStream fis = null;
+
+    private final String FILENAME = "owner_image.png";
 
 
     @Override
@@ -60,6 +68,9 @@ public class activity_create_owner extends AppCompatActivity {
             }
         });
 
+        imageView = findViewById(R.id.imageOwner);
+
+
         final EditText nameText = findViewById(R.id.name);
 
         ownerBtn.setOnClickListener(new View.OnClickListener() {
@@ -74,17 +85,10 @@ public class activity_create_owner extends AppCompatActivity {
 
                     try {
                         Bitmap imgBm = HelperClass.decodeBitmap(getBaseContext(), selectedImage);
-                        String FILENAME = "owner_image.png";
 
-                        fos = new FileOutputStream(FILENAME);
+                        fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
                         imgBm.compress(Bitmap.CompressFormat.PNG, 100, fos);
-                        fos.flush();
                         fos.close();
-
-                        //Refresh media
-                        Intent scanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                        scanIntent.setData(selectedImage);
-                        getBaseContext().sendBroadcast(scanIntent);
                     } catch (IOException e) {
                         e.printStackTrace();
                         Toast.makeText(getBaseContext(),
