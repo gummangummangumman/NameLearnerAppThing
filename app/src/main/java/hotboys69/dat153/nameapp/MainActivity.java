@@ -56,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         if(hasFocus) {
-            //SetOwnerText();
+            SetOwnerText();
+            ShowOwnerImage();
         }
     }
 
@@ -154,8 +155,8 @@ public class MainActivity extends AppCompatActivity {
                 switch (RESULT_CODE) {
                     case RESULT_OK:
                         try {
-                            SetOwnerText();
-                            ShowOwnerImage();
+                            //SetOwnerText();
+                            //ShowOwnerImage();
                         } catch(Exception e) {
                             e.printStackTrace();
                         }

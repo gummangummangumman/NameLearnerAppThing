@@ -107,9 +107,12 @@ public class AddPersonActivity extends AppCompatActivity {
 
         }
         else if(requestCode == CAMERA_REQUEST) {
+            // generate a random file name
+            String randomFileName = randomString.nextString();
+
             //you can easily get the bitmap from the image
             Bitmap bilde = (Bitmap) data.getExtras().get("data");
-            selectedImage = saveToInternalStorage(bilde);
+            selectedImage = HelperClass.saveToInternalStorage(getBaseContext(), bilde, randomFileName);
 
             imageView = findViewById(R.id.imageView2);
 
@@ -123,34 +126,7 @@ public class AddPersonActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * https://stackoverflow.com/questions/17674634/saving-and-reading-bitmaps-images-from-internal-memory-in-android
-     */
-    private Uri saveToInternalStorage(Bitmap bitmapImage){
-        ContextWrapper cw = new ContextWrapper(getApplicationContext());
-        // path to /data/data/yourapp/app_data/imageDir
-        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
-        // generate a random file name
-        String randomFileName = randomString.nextString();
-        // Create file path
-        File mypath = new File(directory,randomFileName + ".png");
 
-        FileOutputStream fos = null;
-        try {
-            fos = new FileOutputStream(mypath);
-            // Use the compress method on the BitMap object to write image to the OutputStream
-            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                fos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return Uri.parse(mypath.getAbsolutePath());
-    }
 
 }
 

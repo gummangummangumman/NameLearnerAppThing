@@ -51,11 +51,8 @@ public class activity_create_owner extends AppCompatActivity {
         addPictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent pickPhoto = new Intent(Intent.ACTION_OPEN_DOCUMENT,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                pickPhoto.setType("image/*");
-                int result = 0;
-                startActivityForResult(pickPhoto, PICK_IMAGE);
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, CAMERA_REQUEST);
             }
 
         });
@@ -111,7 +108,7 @@ public class activity_create_owner extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_IMAGE | requestCode == CAMERA_REQUEST) {
+        if (requestCode == PICK_IMAGE) {
             if (data == null) {
                 Toast.makeText(this, "You need to select a picture",
                         Toast.LENGTH_SHORT).show();
@@ -122,6 +119,13 @@ public class activity_create_owner extends AppCompatActivity {
             imageView = findViewById(R.id.imageOwner);
             imageView.setImageURI(selectedImage);
 
+        } else if(requestCode == CAMERA_REQUEST) {
+            Bitmap bilde = (Bitmap) data.getExtras().get("data");
+            selectedImage = HelperClass.saveToInternalStorage(getBaseContext(), bilde, FILENAME);
+
+            imageView = findViewById(R.id.imageOwner);
+
+            imageView.setImageURI(selectedImage);
         }
     }
 
