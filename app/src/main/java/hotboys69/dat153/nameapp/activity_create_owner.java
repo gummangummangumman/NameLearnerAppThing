@@ -51,7 +51,7 @@ public class activity_create_owner extends AppCompatActivity {
         addPictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                Intent pickPhoto = new Intent(Intent.ACTION_OPEN_DOCUMENT,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 pickPhoto.setType("image/*");
                 int result = 0;

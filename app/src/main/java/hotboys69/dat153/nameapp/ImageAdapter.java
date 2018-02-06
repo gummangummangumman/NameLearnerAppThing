@@ -11,6 +11,8 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import java.io.FileNotFoundException;
+
 
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
